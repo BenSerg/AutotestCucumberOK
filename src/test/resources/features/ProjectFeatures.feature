@@ -19,7 +19,7 @@ Feature: Group enter test
   Scenario:
     And user clicks on create group button
     And chooses public page
-    And insert "123" in name_field
-    And insert "Автомойка" in theme_field
+    And insert expected_name in name_field
+    And insert expected_theme in theme_field
     And clicks on create button
-    Then new group name should be equal to name in name_field and theme should be equal to theme in theme_field
+    Then new group name should be equal to expected_name and theme should be equal to expected_theme

@@ -17,6 +17,7 @@ public class GroupSteps
   private static HomePage homePage;
   private static GroupPage groupPage;
   private static GroupCardWrapper x;
+  private static final String EXPECTED_NAME = "123", EXPECTED_THEME = "Автомойка";
 
   @Given("user is on home page")
   public void user_is_on_home_page()
@@ -80,16 +81,16 @@ public class GroupSteps
     groupPage.choosePublicPage();
   }
 
-  @And("insert \"123\" in name_field")
+  @And("insert expected_name in name_field")
   public void insertNameInName_field()
   {
-    groupPage.setGroupName("123");
+    groupPage.setGroupName(EXPECTED_NAME);
   }
 
-  @And("insert \"Автомойка\" in theme_field")
+  @And("insert expected_theme in theme_field")
   public void insertThemeInTheme_field()
   {
-    groupPage.setGroupTheme("Автомойка");
+    groupPage.setGroupTheme(EXPECTED_THEME);
   }
 
   @And("clicks on create button")
@@ -98,10 +99,10 @@ public class GroupSteps
     groupPage.createGroup();
   }
 
-  @Then("new group name should be equal to name in name_field and theme should be equal to theme in theme_field")
+  @Then("new group name should be equal to expected_name and theme should be equal to expected_theme")
   public void newGroupNameShouldBeEqualToNameInName_fieldAndThemeShouldBeEqualToThemeInTheme_field()
   {
-    Assert.assertTrue("123".equals(groupPage.getNewGroupName()) && "Автомойка".equals(groupPage.getNewGroupTheme()));
+    Assert.assertTrue(EXPECTED_NAME.equals(groupPage.getNewGroupName()) && EXPECTED_THEME.equals(groupPage.getNewGroupTheme()));
     driver.close();
   }
 }
