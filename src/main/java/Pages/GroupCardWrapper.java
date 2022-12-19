@@ -11,7 +11,7 @@ public class GroupCardWrapper
 
   GroupCardWrapper(WebElement element)
   {
-    this.gridcard = element;
+    gridcard = element;
   }
 
   public void enter()

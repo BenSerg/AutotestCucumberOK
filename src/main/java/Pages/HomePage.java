@@ -9,7 +9,7 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 public class HomePage
 {
   @FindBy(xpath = "//*[@data-l = 't,userAltGroup']")
-  private static WebElement GROUP_PAGE_BUTTON;
+  protected static WebElement GROUP_PAGE_BUTTON;
   private final WebDriver driver;
 
   public HomePage(WebDriver driver)

@@ -10,11 +10,11 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 public class LoginPage
 {
   @FindBy(xpath = "//*[@id='field_email']")
-  private static WebElement USERNAME_FIELD;
+  protected static WebElement USERNAME_FIELD;
   @FindBy(xpath = "//*[@id='field_password']")
-  private static WebElement PASSWORD_FIELD;
+  protected static WebElement PASSWORD_FIELD;
   @FindBy(xpath = "//*[@value='Войти в Одноклассники']")
-  private static WebElement LOGIN_BUTTON;
+  protected static WebElement LOGIN_BUTTON;
   private final WebDriver driver;
 
   public LoginPage(WebDriver driver)
