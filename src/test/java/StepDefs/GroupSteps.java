@@ -1,7 +1,7 @@
 package StepDefs;
 
 import Pages.*;
-import io.cucumber.java.After;
+
 import io.cucumber.java.en.*;
 
 import org.junit.jupiter.api.Assertions;
@@ -112,12 +112,6 @@ public class GroupSteps
   public void newGroupNameShouldBeEqualToNameInName_fieldAndThemeShouldBeEqualToThemeInTheme_field()
   {
     Assertions.assertTrue(EXPECTED_NAME.equals(groupPage.getNewGroupName()) && EXPECTED_THEME.equals(groupPage.getNewGroupTheme()));
-    driver.close();
-  }
-
-  @After
-  public void exit()
-  {
     driver.close();
   }
 }
