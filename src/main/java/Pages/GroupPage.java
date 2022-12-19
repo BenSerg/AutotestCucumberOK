@@ -43,7 +43,10 @@ public class GroupPage
 
   private void check()
   {
-    Assertions.assertAll(() -> Assertions.assertNotNull(GROUP_LIST), () -> Assertions.assertNotNull(driverWaiter.waitForElement(10, MODER_CHAPTER_LOCATOR)), () -> Assertions.assertNotNull(driverWaiter.waitForElement(10, CREATE_GROUP_BUTTON_LOCATOR)));
+    Assertions.assertAll(
+        () -> Assertions.assertNotNull(GROUP_LIST),
+        () -> Assertions.assertNotNull(driverWaiter.waitForElement(10, MODER_CHAPTER_LOCATOR)),
+        () -> Assertions.assertNotNull(driverWaiter.waitForElement(10, CREATE_GROUP_BUTTON_LOCATOR)));
   }
 
   public void switchToModerate()
