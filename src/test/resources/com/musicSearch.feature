@@ -4,7 +4,6 @@ Feature: Music search
     When User clicks on music toolbar
     And User clicks on search icon
     And User enter Author as "<author>"
-    And User clicks on music search button
     Then User author should be "<songAuthor>"
 
   Examples:

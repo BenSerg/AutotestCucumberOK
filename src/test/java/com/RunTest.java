@@ -1,7 +1,5 @@
 package com;
 
-//import cucumber.api.junit.Cucumber;
-//import io.cucumber.testng.CucumberOptions;
 import io.cucumber.junit.CucumberOptions;
 import io.cucumber.junit.Cucumber;
 import org.junit.runner.RunWith;
@@ -11,9 +9,6 @@ import org.junit.runner.RunWith;
         glue = {"Steps"},
         dryRun = false,
         monochrome = true
-        //plugin={"pretty", "html:target/cucumber-reports/report.html"}
 )
 public class RunTest {
-
-
 }

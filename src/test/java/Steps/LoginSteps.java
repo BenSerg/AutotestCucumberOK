@@ -1,26 +1,21 @@
 package Steps;
 
-import PageObject.LoginPage;
-import PageObject.MusicSearchPage;
-import PageObject.ProfilePage;
-import cucumber.api.java.en.And;
-import io.cucumber.java.PendingException;
+import Pages.LoginPage;
+import Pages.ProfilePage;
+import Pages.WaitHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
+
 
 public class LoginSteps{
     public WebDriver driver;
     public LoginPage loginPage;
     public WaitHelper waitHelper;
-    public MusicSearchPage musicSearchPage;
     public ProfilePage profilePage;
 
     @Given("User Launch Chrome Driver")
@@ -43,14 +38,10 @@ public class LoginSteps{
     public void user_enter_email_as(String login){
         loginPage.inputLogin(login);
     }
+
     @When("User enter Password as {string}")
     public void user_enter_password_as( String password){
         loginPage.inputPasswd(password);
-    }
-
-    @When("User clicks on Login")
-    public void user_clicks_on_login(){
-        loginPage.clickLoginBtn();
     }
 
     @Then("User name should be {string}")

@@ -1,8 +1,9 @@
 package Steps;
 
-import PageObject.LoginPage;
-import PageObject.MusicSearchPage;
-import PageObject.ProfilePage;
+import Pages.LoginPage;
+import Pages.MusicSearchPage;
+import Pages.ProfilePage;
+import Pages.WaitHelper;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
@@ -18,6 +19,7 @@ public class NotionSteps {
     public WaitHelper waitHelper;
     public MusicSearchPage musicSearchPage;
     public ProfilePage profilePage;
+
     @Дано("Пользователь на домашней странице")
     public void пользователь_на_домашней_странице() {
         System.setProperty("webdriver.chrome.driver", "C:/DRIVERS/chromedriver.exe");
@@ -38,6 +40,7 @@ public class NotionSteps {
     public void пользователь_нажимает_на_кнопку_заметки() {
         profilePage.notionBtmClick();
     }
+
     @Когда("Пользователь вводит заметку {string}")
     public void пользователь_вводит_заметку(String notion) {
         profilePage.sendNotinoText(notion);
@@ -46,11 +49,13 @@ public class NotionSteps {
     public void пользователь_публикует_заметку() {
         profilePage.clickPushBtm();
     }
+
     @Когда("Публикация должна быть {string}")
     public void публикация_должна_быть(String gotNotion) {
         String notion = profilePage.getText();
         Assert.assertEquals(notion, gotNotion);
     }
+
     @Тогда("удаление заметки")
     public void удаление_заметки() {
         profilePage.deleteNotion();

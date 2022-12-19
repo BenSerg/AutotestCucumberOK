@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
         glue = {"Steps"},
         dryRun = false,
         monochrome = true
-        //plugin={"pretty", "html:target/cucumber-reports/report.html"}
 )
 public class MusicSearchRunTest {
 }

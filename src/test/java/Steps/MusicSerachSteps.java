@@ -1,15 +1,15 @@
 package Steps;
 
-import PageObject.LoginPage;
-import PageObject.MusicSearchPage;
-import PageObject.ProfilePage;
+import Pages.LoginPage;
+import Pages.MusicSearchPage;
+import Pages.ProfilePage;
+import Pages.WaitHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 
 import java.time.Duration;
 
@@ -49,11 +49,6 @@ public class MusicSerachSteps{
     @When("User enter Author as {string}")
     public void userEnterAuthorAs(String arg0) {
         musicSearchPage.setSearchAuthor(arg0);
-    }
-
-    @When("User clicks on music search button")
-    public void user_clicks_on_music_search_button() {
-        musicSearchPage.clickSearchAuthor();
     }
 
     @Then("User author should be {string}")
