@@ -20,7 +20,8 @@ public class LoginSteps
   private static final String DRIVER_PATH = "/home/serg/driver/geckodriver";
   private static final By USERNAME = By.xpath("//*[@data-l = 't,userPage']");
   private static final String USER_NAME = "Bot Receiver";
-  LoginPage loginPage;
+  private static LoginPage loginPage;
+
   @Given("browser is open on login page")
   public void browserIsOpen()
   {
@@ -30,12 +31,14 @@ public class LoginSteps
     driver.manage().window().maximize();
     loginPage = new LoginPage(driver);
   }
+
   @Then("user is navigated to the home page")
   public void userIsNavigatedToTheHomePage()
   {
     Assert.assertEquals(USER_NAME, new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(USERNAME)).getText());
     driver.close();
   }
+
   @When("^user enters(.*) and (.*)$")
   public void userEntersUsernameAndPassword(String username, String password)
   {

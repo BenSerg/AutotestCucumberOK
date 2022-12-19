@@ -2,27 +2,28 @@ package Pages;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Set;
 
-//здесь поменять
 public class GroupPage
 {
-  By GROUP_LIST_LOCATOR = By.xpath("//*[contains(@class,'ugrid') and contains(@class, 'group')]");
-  By MODER_CHAPTER_LOCATOR = By.xpath("//*[contains(@hrefattrs,'Moderate')]");
-  By CREATE_GROUP_BUTTON_LOCATOR = By.xpath(("//*[contains(@href, 'create')]"));
-  By CREATE_PUBLIC_BUTTON_LOCATOR = By.xpath("//*[contains(@data-l, 'PAGE')]");
-  By GROUP_NAME_LOCATOR = By.xpath("//*[@id='field_name']");
-  By SELECT_TAG_LOCATOR = By.xpath("/html/body/div[17]/div/div[2]/div[1]/div/div[2]/form/div[1]/div/div[2]/div[2]/div[1]/div/div/span[2]/input");
-  By CREATE_BUTTON = By.xpath("//*[@id='hook_FormButton_button_create']");
-  By GROUP_NAME = By.xpath("/html/body/div[10]/div[5]/div[5]/div[1]/div/div[2]/div[1]/div[3]/div[2]/div[1]/div/div/div/div[1]/div[2]/div[1]/div[2]/div[1]/div/div/div[1]/h1");
-  List<WebElement> GROUP_LIST;
+  private static final By GROUP_LIST_LOCATOR = By.xpath("//*[contains(@class,'ugrid') and contains(@class, 'group')]");
+  private static final By MODER_CHAPTER_LOCATOR = By.xpath("//*[contains(@hrefattrs,'Moderate')]");
+  private static final By CREATE_GROUP_BUTTON_LOCATOR = By.xpath(("//*[contains(@href, 'create')]"));
+  private static final By CREATE_PUBLIC_BUTTON_LOCATOR = By.xpath("//*[contains(@data-l, 'PAGE')]");
+  private static final By GROUP_NAME_LOCATOR = By.xpath("//*[@id='field_name']");
+  private static final By SELECT_TAG_LOCATOR = By.xpath("//*[contains(@class, 'multi-select_it_cnt')]");
+  private static final By CREATE_BUTTON = By.xpath("//*[@id='hook_FormButton_button_create']");
+  private static final By GROUP_NAME = By.xpath("//*[@class = 'group-name_t']");
+  private static final By GROUP_THEME = By.xpath("//*[@class = 'group-name_info']");
+  private static final By STUB_LOCATOR = By.xpath("//*[contains(@class,'stub-empty')]");
+  private static final By GROUP_JOIN_RESULT = By.xpath("//*[contains(@class, 'groups-join-result')]");
+
+  private List<WebElement> GROUP_LIST;
   private final WebDriver driver;
 
   public GroupPage(WebDriver driver)
@@ -44,27 +45,62 @@ public class GroupPage
 
   private void check()
   {
-    Assertions.assertAll(() -> Assertions.assertNotNull(GROUP_LIST),
-                         () -> Assertions.assertNotNull(new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(MODER_CHAPTER_LOCATOR))),
-                         () -> Assertions.assertNotNull(new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(CREATE_GROUP_BUTTON_LOCATOR)))
-                        );
+    Assertions.assertAll(
+        () -> Assertions.assertNotNull(GROUP_LIST),
+        () -> Assertions.assertNotNull(new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(MODER_CHAPTER_LOCATOR))),
+        () -> Assertions.assertNotNull(new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(CREATE_GROUP_BUTTON_LOCATOR))));
   }
 
   public void switchToModerate()
   {
     driver.findElement(MODER_CHAPTER_LOCATOR).click();
   }
-  public void createGroup(){
-    driver.findElement(CREATE_GROUP_BUTTON_LOCATOR).click();
-    new WebDriverWait(driver, Duration.ofSeconds(20)).until(driver -> driver.findElement(CREATE_PUBLIC_BUTTON_LOCATOR)).click();
-    new WebDriverWait(driver, Duration.ofSeconds(20)).until(driver -> driver.findElement(GROUP_NAME_LOCATOR)).sendKeys("123");
-    new WebDriverWait(driver, Duration.ofSeconds(20)).until(driver -> driver.findElement(SELECT_TAG_LOCATOR)).click();
-    By xp = By.xpath("/html/body/div[10]/div[5]/div[5]/div[4]/div/div[3]/div[1]/div[2]/div[2]");
-    new WebDriverWait(driver, Duration.ofSeconds(20)).until(driver -> driver.findElement(xp)).click();
-    new WebDriverWait(driver, Duration.ofSeconds(20)).until(driver -> driver.findElement(CREATE_BUTTON)).click();
-  }
-  public String getNewGroupName(){
-    return new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(GROUP_NAME)).getText();
 
+  public void goToCreateMenuButton()
+  {
+    driver.findElement(CREATE_GROUP_BUTTON_LOCATOR).click();
+  }
+
+  public void choosePublicPage()
+  {
+    new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(CREATE_PUBLIC_BUTTON_LOCATOR)).click();
+  }
+
+  public void setGroupName(String name)
+  {
+    new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(GROUP_NAME_LOCATOR)).sendKeys(name);
+  }
+
+  public void setGroupTheme(String theme)
+  {
+    new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(SELECT_TAG_LOCATOR)).click();
+    String xpath = "//*[text() = '" + theme + "']";
+    By xp = By.xpath(xpath);
+    new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(xp)).click();
+  }
+
+  public void createGroup()
+  {
+    new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(CREATE_BUTTON)).click();
+  }
+
+  public String getNewGroupName()
+  {
+    return new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(GROUP_NAME)).getText();
+  }
+
+  public String getNewGroupTheme()
+  {
+    return new WebDriverWait(driver, Duration.ofSeconds(7)).until(driver -> driver.findElement(GROUP_THEME)).getText();
+  }
+
+  public String getStubEmptyText()
+  {
+    return new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(STUB_LOCATOR)).getText();
+  }
+
+  public String getGroupEntranceMessage()
+  {
+    return new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(GROUP_JOIN_RESULT)).getText();
   }
 }

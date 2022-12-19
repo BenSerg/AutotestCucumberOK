@@ -9,9 +9,7 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 public class HomePage
 {
   @FindBy(xpath = "//*[@data-l = 't,userAltGroup']")
-  WebElement GROUP_PAGE_BUTTON;
-  @FindBy(xpath =  "//*[@data-l = 't,userPhotos']")
-  WebElement PHOTO_PAGE_BUTTON;
+  private static WebElement GROUP_PAGE_BUTTON;
   private final WebDriver driver;
 
   public HomePage(WebDriver driver)
