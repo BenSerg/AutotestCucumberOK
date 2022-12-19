@@ -70,7 +70,7 @@ public class GroupPage
 
   public String getStubEmptyText()
   {
-    return new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(STUB_LOCATOR)).getText();
+    return new WebDriverWait(driver, Duration.ofSeconds(7)).until(driver -> driver.findElement(STUB_LOCATOR)).getText();
   }
 
   public String getGroupEntranceMessage()

@@ -1,21 +1,19 @@
-Feature: Group enter test
+Feature: Group tests
 
   Background:
-    Given user is on home page
+    Given user is on home page with one group
     When user clicks on group button
 
-  Scenario Outline:
+  Scenario:
     And user sees first group
     And clicks on enter button
-    Then <arg> should be seen
-    Examples:
-      | arg         |
-      | Вы в группе |
+    Then group entrance success should be seen
 
   Scenario:
     And user enter moderate chapter with no moderate group
     Then non-exist message should be visible
-  @SmokeTest
+
+
   Scenario:
     And user clicks on create group button
     And chooses public page

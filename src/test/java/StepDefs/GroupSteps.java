@@ -1,8 +1,10 @@
 package StepDefs;
 
 import Pages.*;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
-import org.junit.Assert;
+
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,7 +22,12 @@ public class GroupSteps
   private static final String EXPECTED_NAME = "123", EXPECTED_THEME = "Автомойка";
   private GroupCreationMenu groupCreationMenu;
 
-  @Given("user is on home page")
+  public GroupSteps(WebDriver driver)
+  {
+    this.driver = driver;
+  }
+
+  @Given("user is on home page with one group")
   public void user_is_on_home_page()
   {
     System.setProperty(DRIVER_NAME, DRIVER_PATH);
@@ -49,19 +56,20 @@ public class GroupSteps
     x.enter();
   }
 
-  @Then("^(.*) should be seen$")
-  public void argShouldBeSeen(String arg)
+  @Then("group entrance success should be seen$")
+  public void argShouldBeSeen()
   {
-    Assert.assertEquals(arg, groupPage.getGroupEntranceMessage());
-    driver.quit();
+    String arg = "Вы в группе";
+    Assertions.assertEquals(arg, groupPage.getGroupEntranceMessage());
+    driver.close();
   }
 
   @Then("non-exist message should be visible")
   public void nonExistMessageShouldBeVisible()
   {
     String check = "У Вас нет модерируемых групп.";
-    Assert.assertEquals(check, groupPage.getStubEmptyText());
-    driver.quit();
+    Assertions.assertEquals(check, groupPage.getStubEmptyText());
+    driver.close();
   }
 
   @And("user enter moderate chapter with no moderate group")
@@ -103,7 +111,13 @@ public class GroupSteps
   @Then("new group name should be equal to expected_name and theme should be equal to expected_theme")
   public void newGroupNameShouldBeEqualToNameInName_fieldAndThemeShouldBeEqualToThemeInTheme_field()
   {
-    Assert.assertTrue(EXPECTED_NAME.equals(groupPage.getNewGroupName()) && EXPECTED_THEME.equals(groupPage.getNewGroupTheme()));
+    Assertions.assertTrue(EXPECTED_NAME.equals(groupPage.getNewGroupName()) && EXPECTED_THEME.equals(groupPage.getNewGroupTheme()));
+    driver.close();
+  }
+
+  @After
+  public void exit()
+  {
     driver.close();
   }
 }

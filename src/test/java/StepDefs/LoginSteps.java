@@ -5,7 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -19,7 +19,6 @@ public class LoginSteps
   private static final String DRIVER_NAME = "webdriver.gecko.driver";
   private static final String DRIVER_PATH = "/home/serg/driver/geckodriver";
   private static final By USERNAME = By.xpath("//*[@data-l = 't,userPage']");
-  private static final String USER_NAME = "Bot Receiver";
   private static LoginPage loginPage;
 
   @Given("browser is open on login page")
@@ -32,10 +31,10 @@ public class LoginSteps
     loginPage = new LoginPage(driver);
   }
 
-  @Then("user is navigated to the home page")
-  public void userIsNavigatedToTheHomePage()
+  @Then("^user is navigated to the home page and username should be equal to (.*)$")
+  public void userIsNavigatedToTheHomePage(String username)
   {
-    Assert.assertEquals(USER_NAME, new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(USERNAME)).getText());
+    Assertions.assertEquals(username, new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(USERNAME)).getText());
     driver.close();
   }
 

@@ -34,7 +34,7 @@ public class GroupCreationMenu
     new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(SELECT_TAG_LOCATOR)).click();
     String xpath = "//*[text() = '" + theme + "']";
     By xp = By.xpath(xpath);
-    new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(xp)).click();
+    new WebDriverWait(driver, Duration.ofSeconds(7)).until(driver -> driver.findElement(xp)).click();
   }
 
   public GroupPage createGroup()
