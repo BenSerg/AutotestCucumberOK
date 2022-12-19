@@ -22,10 +22,6 @@ public class GroupSteps
   private static final String EXPECTED_NAME = "123", EXPECTED_THEME = "Автомойка";
   private GroupCreationMenu groupCreationMenu;
 
-  public GroupSteps(WebDriver driver)
-  {
-    this.driver = driver;
-  }
 
   @Given("user is on home page with one group")
   public void user_is_on_home_page()
