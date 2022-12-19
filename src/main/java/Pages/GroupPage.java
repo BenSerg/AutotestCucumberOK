@@ -21,10 +21,12 @@ public class GroupPage
 
   private List<WebElement> GROUP_LIST;
   private final WebDriver driver;
+  private final DriverWaiter driverWaiter;
 
   public GroupPage(WebDriver driver)
   {
     this.driver = driver;
+    this.driverWaiter = new DriverWaiter(this.driver);
     collect();
     check();
   }
@@ -41,10 +43,7 @@ public class GroupPage
 
   private void check()
   {
-    Assertions.assertAll(
-        () -> Assertions.assertNotNull(GROUP_LIST),
-        () -> Assertions.assertNotNull(new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(MODER_CHAPTER_LOCATOR))),
-        () -> Assertions.assertNotNull(new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.findElement(CREATE_GROUP_BUTTON_LOCATOR))));
+    Assertions.assertAll(() -> Assertions.assertNotNull(GROUP_LIST), () -> Assertions.assertNotNull(driverWaiter.waitForElement(10, MODER_CHAPTER_LOCATOR)), () -> Assertions.assertNotNull(driverWaiter.waitForElement(10, CREATE_GROUP_BUTTON_LOCATOR)));
   }
 
   public void switchToModerate()
@@ -60,21 +59,21 @@ public class GroupPage
 
   public String getNewGroupName()
   {
-    return new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(GROUP_NAME)).getText();
+    return driverWaiter.waitForElement(10, GROUP_NAME).getText();
   }
 
   public String getNewGroupTheme()
   {
-    return new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(GROUP_THEME)).getText();
+    return driverWaiter.waitForElement(10, GROUP_THEME).getText();
   }
 
   public String getStubEmptyText()
   {
-    return new WebDriverWait(driver, Duration.ofSeconds(7)).until(driver -> driver.findElement(STUB_LOCATOR)).getText();
+    return driverWaiter.waitForElement(10, STUB_LOCATOR).getText();
   }
 
   public String getGroupEntranceMessage()
   {
-    return new WebDriverWait(driver, Duration.ofSeconds(5)).until(driver -> driver.findElement(GROUP_JOIN_RESULT)).getText();
+    return driverWaiter.waitForElement(10, GROUP_JOIN_RESULT).getText();
   }
 }
