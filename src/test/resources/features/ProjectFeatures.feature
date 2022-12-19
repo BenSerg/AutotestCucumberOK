@@ -15,7 +15,7 @@ Feature: Group enter test
   Scenario:
     And user enter moderate chapter with no moderate group
     Then non-exist message should be visible
-
+  @SmokeTest
   Scenario:
     And user clicks on create group button
     And chooses public page

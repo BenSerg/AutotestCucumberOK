@@ -18,6 +18,7 @@ public class GroupSteps
   private static GroupPage groupPage;
   private static GroupCardWrapper x;
   private static final String EXPECTED_NAME = "123", EXPECTED_THEME = "Автомойка";
+  private GroupCreationMenu groupCreationMenu;
 
   @Given("user is on home page")
   public void user_is_on_home_page()
@@ -72,31 +73,31 @@ public class GroupSteps
   @And("user clicks on create group button")
   public void userClicksOnCreateGroupButton()
   {
-    groupPage.goToCreateMenuButton();
+    groupCreationMenu = groupPage.goToCreateMenuButton();
   }
 
   @And("chooses public page")
   public void choosesPublicPage()
   {
-    groupPage.choosePublicPage();
+    groupCreationMenu.choosePublicPage();
   }
 
   @And("insert expected_name in name_field")
   public void insertNameInName_field()
   {
-    groupPage.setGroupName(EXPECTED_NAME);
+    groupCreationMenu.setGroupName(EXPECTED_NAME);
   }
 
   @And("insert expected_theme in theme_field")
   public void insertThemeInTheme_field()
   {
-    groupPage.setGroupTheme(EXPECTED_THEME);
+    groupCreationMenu.setGroupTheme(EXPECTED_THEME);
   }
 
   @And("clicks on create button")
   public void clicksOnCreateButton()
   {
-    groupPage.createGroup();
+    groupPage = groupCreationMenu.createGroup();
   }
 
   @Then("new group name should be equal to expected_name and theme should be equal to expected_theme")
