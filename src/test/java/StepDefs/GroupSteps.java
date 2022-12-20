@@ -108,9 +108,13 @@ public class GroupSteps
   {
     Assertions.assertTrue(EXPECTED_NAME.equals(groupPage.getNewGroupName()) && EXPECTED_THEME.equals(groupPage.getNewGroupTheme()));
   }
+
   @After()
   public void closeBrowser()
   {
-    driver.quit();
+    if (driver != null)
+    {
+      driver.quit();
+    }
   }
 }
