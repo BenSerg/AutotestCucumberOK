@@ -105,7 +105,7 @@ public class GroupSteps
   }
 
   @Then("new group name should be equal to expected_name and theme should be equal to expected_theme")
-  public void newGroupNameShouldBeEqualToNameInName_fieldAndThemeShouldBeEqualToThemeInTheme_field()
+  public void compareNameandTheme()
   {
     Assertions.assertTrue(EXPECTED_NAME.equals(groupPage.getNewGroupName()) && EXPECTED_THEME.equals(groupPage.getNewGroupTheme()));
     driver.close();
