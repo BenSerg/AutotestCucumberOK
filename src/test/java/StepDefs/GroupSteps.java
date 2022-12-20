@@ -24,7 +24,7 @@ public class GroupSteps
   private static GroupCreationMenu groupCreationMenu;
 
 
-  @Given("user is on home page with one group")
+  @Given("user is on home page with at least one group")
   public void user_is_on_home_page()
   {
     System.setProperty(DRIVER_NAME, DRIVER_PATH);

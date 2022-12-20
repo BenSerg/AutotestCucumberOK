@@ -2,7 +2,7 @@
 Feature: Group tests
 
   Background:
-    Given user is on home page with one group
+    Given user is on home page with at least one group
     When user clicks on group button
 
   Scenario: Enter first group

@@ -1,7 +1,6 @@
 package StepDefs;
 
 import Pages.LoginPage;
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
