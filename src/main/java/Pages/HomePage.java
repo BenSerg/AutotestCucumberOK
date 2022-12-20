@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,9 @@ public class HomePage
 {
   @FindBy(xpath = "//*[@data-l = 't,userAltGroup']")
   protected static WebElement GROUP_PAGE_BUTTON;
+  @FindBy(xpath = "//*[@data-l = 't,userPage']")
+  protected static WebElement USERNAME_FIELD;
+
   private final WebDriver driver;
 
   public HomePage(WebDriver driver)
@@ -24,4 +28,8 @@ public class HomePage
     return new GroupPage(driver);
   }
 
+  public String getUserName()
+  {
+    return USERNAME_FIELD.getText();
+  }
 }
