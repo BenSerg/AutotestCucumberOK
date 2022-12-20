@@ -1,5 +1,6 @@
 package Pages;
 
+import Utils.DriverWaiter;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,3 +1,4 @@
+@group
 Feature: Group tests
 
   Background:
