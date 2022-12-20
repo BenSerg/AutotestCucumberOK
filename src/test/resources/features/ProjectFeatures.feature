@@ -5,17 +5,17 @@ Feature: Group tests
     Given user is on home page with one group
     When user clicks on group button
 
-  Scenario:
+  Scenario: Enter first group
     And user sees first group
     And clicks on enter button
     Then group entrance success should be seen
 
-  Scenario:
+  Scenario: Check moderate chapter
     And user enter moderate chapter with no moderate group
     Then non-exist message should be visible
 
 
-  Scenario:
+  Scenario: Create new group
     And user clicks on create group button
     And chooses public page
     And insert expected_name in name_field
