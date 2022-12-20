@@ -2,6 +2,7 @@ package StepDefs;
 
 import Pages.*;
 
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +21,7 @@ public class GroupSteps
   private static GroupPage groupPage;
   private static GroupCardWrapper x;
   private static final String EXPECTED_NAME = "123", EXPECTED_THEME = "Автомойка";
-  private GroupCreationMenu groupCreationMenu;
+  private static GroupCreationMenu groupCreationMenu;
 
 
   @Given("user is on home page with one group")
@@ -57,7 +58,6 @@ public class GroupSteps
   {
     String arg = "Вы в группе";
     Assertions.assertEquals(arg, groupPage.getGroupEntranceMessage());
-    driver.close();
   }
 
   @Then("non-exist message should be visible")
@@ -65,7 +65,6 @@ public class GroupSteps
   {
     String check = "У Вас нет модерируемых групп.";
     Assertions.assertEquals(check, groupPage.getStubEmptyText());
-    driver.close();
   }
 
   @And("user enter moderate chapter with no moderate group")
@@ -105,9 +104,13 @@ public class GroupSteps
   }
 
   @Then("new group name should be equal to expected_name and theme should be equal to expected_theme")
-  public void compareNameandTheme()
+  public void compareNameAndTheme()
   {
     Assertions.assertTrue(EXPECTED_NAME.equals(groupPage.getNewGroupName()) && EXPECTED_THEME.equals(groupPage.getNewGroupTheme()));
-    driver.close();
+  }
+  @After()
+  public void closeBrowser()
+  {
+    driver.quit();
   }
 }
